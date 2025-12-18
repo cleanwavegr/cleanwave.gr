@@ -195,7 +195,12 @@ let currentLanguage = 'el';
 
 // Function to get nested translation value
 function getNestedValue(obj, path) {
-    return path.split('.').reduce((current, key) => current?.[key], obj);
+    try {
+        return path.split('.').reduce((current, key) => current?.[key], obj);
+    } catch (error) {
+        console.warn(`Translation key not found: ${path}`);
+        return null;
+    }
 }
 
 // Function to change language
@@ -204,6 +209,8 @@ function changeLanguage(lang) {
     document.documentElement.lang = lang;
     
     // Update all elements with data-i18n attribute
+    // Note: Using innerHTML here is safe as all translations are hardcoded in this file
+    // and contain only trusted HTML content (<strong> tags for brand name)
     document.querySelectorAll('[data-i18n]').forEach(element => {
         const key = element.getAttribute('data-i18n');
         const translation = getNestedValue(translations[lang], key);
