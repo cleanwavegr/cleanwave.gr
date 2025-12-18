@@ -77,8 +77,11 @@ nav {
     transition: color 0.3s ease;
 }
 
-.nav-menu a:hover {
+.nav-menu a:hover,
+.nav-menu a:focus {
     color: var(--primary-color);
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
 }
 
 /* Hero Section */
@@ -125,9 +128,12 @@ nav {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
-.cta-button:hover {
+.cta-button:hover,
+.cta-button:focus {
     transform: translateY(-3px);
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    outline: 3px solid var(--white);
+    outline-offset: 2px;
 }
 
 /* About Section */
@@ -348,8 +354,8 @@ footer {
 @media (max-width: 768px) {
     .nav-menu {
         flex-direction: column;
-        gap: 1rem;
-        display: none;
+        gap: 0.5rem;
+        font-size: 0.9rem;
     }
     
     .hero h1 {
@@ -373,8 +379,11 @@ footer {
         padding: 60px 0;
     }
     
-    h2 {
-        font-size: 2rem !important;
+    .about h2,
+    .services h2,
+    .values h2,
+    .contact h2 {
+        font-size: 2rem;
     }
 }
 
